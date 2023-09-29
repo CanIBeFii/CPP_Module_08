@@ -3,6 +3,7 @@
 
 #include <list>
 #include <cmath>
+#include <algorithm>
 
 class Span {
 	public:
@@ -26,6 +27,7 @@ class Span {
 		void			setMaxSize( unsigned int n );
 
 		void			addNumber( int n );
+		void			fillWithNumber( unsigned int n, int number);
 		int				shortestSpan( void );
 		int				longestSpan( void );
 
@@ -36,6 +38,11 @@ class Span {
 		};
 
 		class NoSpanException : public std::exception {
+			public:
+				virtual const char*	what( void ) const throw();
+		};
+
+		class SizeTooBigException : public std::exception {
 			public:
 				virtual const char*	what( void ) const throw();
 		};

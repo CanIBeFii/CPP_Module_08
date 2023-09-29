@@ -63,6 +63,13 @@ void			Span::addNumber( int n ) {
 	_list.push_back( n );
 }
 
+void			Span::fillWithNumber( unsigned int n, int number ) {
+	if ( n > _maxSize ) {
+		throw SizeTooBigException();
+	}
+	std::fill_n( _list.begin(), n, number );
+}
+
 int				Span::shortestSpan( void ) {
 	if ( _list.size() < 2 ) {
 		throw NoSpanException();
@@ -107,4 +114,8 @@ const char*		Span::FullSpanException::what( void ) const throw() {
 
 const char*		Span::NoSpanException::what( void ) const throw() {
 	return ( "There's no numbers to have a span!" );
+}
+
+const char*		Span::SizeTooBigException::what( void ) const throw() {
+	return ( "Size given to fill is too big!" );
 }
