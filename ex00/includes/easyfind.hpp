@@ -2,14 +2,19 @@
 #define EASYFIND_HPP
 
 #include <iostream>
+#include <algorithm>
 
 template <typename T>
-size_t	easyfind( T container, int num ) {
-	for ( size_t i = 0; i < container.size(); i++ ) {
-		if ( container[i] == num )
-			return ( i );
+int&	easyfind( T container, int num ) {
+	T::iterator	iter;
+
+	iter = find( container.begin(), container.end(), num );
+
+	if ( iter == container.end() ) {
+		throw std::exception();
 	}
-	throw std::exception();
+
+	return ( *iter );
 }
 
 #endif
