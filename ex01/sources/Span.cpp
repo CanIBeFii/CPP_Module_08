@@ -67,25 +67,33 @@ void			Span::fillWithNumber( unsigned int n, int number ) {
 	if ( n > _maxSize ) {
 		throw SizeTooBigException();
 	}
-	std::fill_n( _list.begin(), n, number );
+	
+	for ( unsigned int i = 0; i < n; i++ ) {
+		_list.push_back( number );
+	}
 }
 
 int				Span::shortestSpan( void ) {
 	if ( _list.size() < 2 ) {
 		throw NoSpanException();
 	}
+	
+	std::list<int> tmp( _list );
+	tmp.sort();
 
 	int	shortest = 2147483647;
-	std::list<int>::iterator iter = _list.begin();
-	std::list<int>::iterator previous = _list.begin();
+	int	number;
 
-	int	difference;
-	for ( iter++ ; iter != _list.end(); iter++, previous++ ) {
-		difference = std::abs(*previous - *iter);
-		if ( difference < shortest ) {
-			shortest = difference;
+	std::list<int>::iterator iter1 = tmp.begin();
+	std::list<int>::iterator iter2 = ++tmp.begin();
+
+	for ( ; iter2 != tmp.end(); ++iter1, ++iter2 ) {
+		number = difference<int>( *iter1, *iter2 );
+		if ( number < shortest ) {
+			shortest = number;
 		}
 	}
+	
 	return ( shortest );
 }
 
@@ -94,18 +102,9 @@ int				Span::longestSpan( void ) {
 		throw NoSpanException();
 	}
 
-	int	longest = 0;
-	std::list<int>::iterator iter = _list.begin();
-	std::list<int>::iterator previous = _list.begin();
-
-	int	difference;
-	for ( iter++; iter != _list.end(); iter++, previous++ ) {
-		difference = std::abs( *previous - *iter );
-		if ( longest < difference ) {
-			longest = difference;
-		}
-	}
-	return ( longest );
+	int	min = *std::min_element( _list.begin(), _list.end() );
+	int	max = *std::max_element( _list.begin(), _list.end() );
+	return ( max - min );
 }
 
 const char*		Span::FullSpanException::what( void ) const throw() {

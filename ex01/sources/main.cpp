@@ -15,15 +15,18 @@ int	main( void ) {
 	}
 
 	{
-		Span	span( 10000000, 10 );
-
-		// span.fillWithNumber( 999950, 10 );
+		//Span	span( 10000000, 10 );
+		Span	span( 10000000 );
+		span.fillWithNumber( 999950, 10 );
 
 		span.addNumber( 17 );
 		std::cout << span.shortestSpan() << std::endl;
 		std::cout << span.longestSpan() << std::endl;
 
 		span.addNumber( 3000 );
+
+		std::cout << span.shortestSpan() << std::endl;
+		std::cout << span.longestSpan() << std::endl;
 
 	}
 

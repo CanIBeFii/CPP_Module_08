@@ -52,6 +52,11 @@ class Span {
 		std::list<int>	_list;
 };
 
+template <typename T>
+int		difference( T a, T b ) {
+	return ( std::abs( a - b ) );
+}
+
 // Colors
 #define RESET   "\033[0m"
 #define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
