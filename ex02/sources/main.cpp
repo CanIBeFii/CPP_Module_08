@@ -1,66 +1,55 @@
 #include <iostream>
-#include "Span.hpp"
+#include "MutantStack.hpp"
 
 int	main( void ) {
 	{
-		Span sp = Span(5);
-		sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11);
+		MutantStack<int> mstack;
 
-		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
-	}
+		mstack.push(5);
+		mstack.push(17);
 
-	{
-		Span	span( 20000000 , 10 );
+		std::cout << mstack.top() << std::endl;
 
-		span.addNumber( 17 );
-		span.addNumber( 3000 );
+		mstack.pop();
 
-		std::cout << span.shortestSpan() << std::endl;
-		std::cout << span.longestSpan() << std::endl;
-	}
+		std::cout << mstack.size() << std::endl;
 
-	{
-		Span	span( 5 );
+		mstack.push(3);
+		mstack.push(5);
+		mstack.push(737);
 
-		try {
-			span.shortestSpan();
-		} catch ( Span::NoSpanException& e ) {
-			std::cout << "Error: " << e.what() << std::endl;
+		//[...]
+		mstack.push(0);
+
+		MutantStack<int>::iterator it = mstack.begin();
+		MutantStack<int>::iterator ite = mstack.end();
+
+		++it;
+		--it;
+
+		for ( ; it != ite; ++it ) {
+			std::cout << *it << std::endl;
 		}
+
+		std::stack<int> s(mstack);
 	}
-
 	{
-		Span	span( 5 );
+		MutantStack<std::string> strings;
 
-		try {
-			span.longestSpan();
-		} catch ( Span::NoSpanException& e ) {
-			std::cout << "Error: " << e.what() << std::endl;
+		strings.push("Hello");
+		strings.push("world");
+
+		strings.push("!");
+		MutantStack<std::string>::iterator it_s = strings.begin();
+		MutantStack<std::string>::iterator ite_s = strings.end();
+		++it_s;
+		--it_s;
+
+		for ( ; it_s != ite_s; ++it_s ) {
+			std::cout << *it_s << std::endl;
 		}
-	}
-
-	{
-		Span	span( 5 );
-
-		try {
-			span.addNumber(6);
-			span.addNumber(3);
-			span.addNumber(17);
-			span.addNumber(9);
-			span.addNumber(11);
-			span.addNumber(6);
-			span.addNumber(3);
-			span.addNumber(17);
-			span.addNumber(9);
-			span.addNumber(11);
-		} catch ( Span::FullSpanException& e ) {
-			std::cout << "Error: " << e.what() << std::endl;
-		}
+		
+		std::stack<std::string> strs(strings);
 	}
 
 	return ( 0 );

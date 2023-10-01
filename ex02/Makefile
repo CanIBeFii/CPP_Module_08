@@ -1,10 +1,10 @@
-NAME = ex01
+NAME = ex02
 
-HEADERS_LIST = Span.hpp
+HEADERS_LIST = MutantStack.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SOURCES_LIST =  Span.cpp main.cpp
+SOURCES_LIST =  main.cpp
 SOURCES_DIRECTORY = ./sources/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
