@@ -27,7 +27,7 @@ class Span {
 		void			setMaxSize( unsigned int n );
 
 		void			addNumber( int n );
-		void			fillWithNumber( unsigned int n, int number);
+		void			fillWithNumber( unsigned int n, int range );
 		int				shortestSpan( void );
 		int				longestSpan( void );
 

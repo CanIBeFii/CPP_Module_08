@@ -1,7 +1,9 @@
-#include "Span.hpp"
+#include "../includes/Span.hpp"
 #include <iostream>
+#include <random>
+#include <ctime>
 
-Span::Span( void ) : _maxSize(0), _list( std::list<int>() ) {
+Span::Span( void ) : _maxSize( 0 ), _list( std::list<int>() ) {
 	std::cout << BOLDCYAN << "Span: " << RESET;
 	std::cout << BOLDYELLOW << "Default " << BOLDGREEN << "Constructor " << RESET;
 	std::cout << "called" << std::endl;
@@ -63,13 +65,15 @@ void			Span::addNumber( int n ) {
 	_list.push_back( n );
 }
 
-void			Span::fillWithNumber( unsigned int n, int number ) {
+void			Span::fillWithNumber( unsigned int n, int range ) {
 	if ( n > _maxSize ) {
 		throw SizeTooBigException();
 	}
 	
+	srand( time( NULL ) );
+
 	for ( unsigned int i = 0; i < n; i++ ) {
-		_list.push_back( number );
+		_list.push_back( std::rand() % range );
 	}
 }
 
@@ -90,6 +94,8 @@ int				Span::shortestSpan( void ) {
 	for ( ; iter2 != tmp.end(); ++iter1, ++iter2 ) {
 		number = difference<int>( *iter1, *iter2 );
 		if ( number < shortest ) {
+			if ( number == 0 )
+				return ( 0 );
 			shortest = number;
 		}
 	}
