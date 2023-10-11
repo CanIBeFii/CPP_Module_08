@@ -1,5 +1,5 @@
 #include <iostream>
-#include "MutantStack.hpp"
+#include "../includes/MutantStack.hpp"
 
 int	main( void ) {
 	{
@@ -43,7 +43,7 @@ int	main( void ) {
 		MutantStack<std::string>::iterator it_s = strings.begin();
 		MutantStack<std::string>::iterator ite_s = strings.end();
 		++it_s;
-		--it_s;
+		// --it_s;
 
 		for ( ; it_s != ite_s; ++it_s ) {
 			std::cout << *it_s << std::endl;

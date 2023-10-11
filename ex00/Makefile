@@ -1,6 +1,6 @@
 NAME = ex00
 
-HEADERS_LIST = whatever.hpp
+HEADERS_LIST = easyfind.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 

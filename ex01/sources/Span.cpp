@@ -1,6 +1,5 @@
 #include "../includes/Span.hpp"
 #include <iostream>
-#include <random>
 #include <ctime>
 
 Span::Span( void ) : _maxSize( 0 ), _list( std::list<int>() ) {

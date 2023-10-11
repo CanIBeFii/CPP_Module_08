@@ -29,7 +29,6 @@ int	main( void ) {
 		std::cout << span.longestSpan() << std::endl;
 
 	}
-
 	{
 		Span	span( 1000000 );
 
